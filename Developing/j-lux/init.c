@@ -59,6 +59,6 @@ void init(void)
    
            // 0x07 = Hellgrau auf Schwarz
            video[i * 2 + 1] = 0x07;
-           kprintf("Hello World");
+           //kprintf("Hello World");
        }
    }
