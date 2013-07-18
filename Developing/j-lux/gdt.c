@@ -37,3 +37,34 @@
 
 #include "gdt.h"
 
+gdt_entry_t gdt_entries[5];
+gdt_ptr_t gdt_ptr;
+
+void gdt_set_entry(int num, unsigned long base, unsigned long limit, unsigned char access, unsigned char gran)
+{
+  gdt_entries[num].base_low    = (base & 0xFFFF);
+  gdt_entries[num].base_middle = (base >> 16) & 0xFF;
+  gdt_entries[num].base_high   = (base >> 24) & 0xFF;
+  gdt_entries[num].limit_low      = (limit & 0xFFFF);
+  gdt_entries[num].granularity    = (limit >> 16) & 0x0F;     
+
+  gdt_entries[num].granularity    |= gran & 0xF0;
+  gdt_entries[num].access         = access;
+}
+
+void gdt_install()
+ {
+  gdt_ptr.limit = (sizeof(gdt_entry_t) * 5) -1;
+  gdt_ptr.base  = (unsigned long)&gdt_entries;
+
+  gdt_set_entry(0, 0, 0, 0, 0);
+  gdt_set_entry(1, 0, 0xFFFFFFFF, 0x9A, 0xCF);
+  gdt_set_entry(2, 0, 0xFFFFFFFF, 0x92, 0xCF);
+  gdt_set_entry(3, 0, 0xFFFFFFFF, 0xFA, 0xCF);
+  gdt_set_entry(4, 0, 0xFFFFFFFF, 0xF2, 0xCF);
+
+  gdt_flush((unsigned long)&gdt_ptr);
+}
+
+  
+
