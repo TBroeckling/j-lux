@@ -1,7 +1,7 @@
 /*
 * Copyight (c) 2013 The j-lux Project. All rights reserved.
 *
-* This code is derived from software contributet to the j-lux Project
+* This code is derived from software contributed to the j-lux Project
 * by Jannick Fahlbusch
 *
 * Redistribution and use in source or binary forms, with or without 
@@ -35,8 +35,7 @@
 */
 
 //INCLUDES
-
-//momentan noch keine includes
+#include "gdt.h"
 
 //END INCLUDES
 
