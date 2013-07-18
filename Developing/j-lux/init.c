@@ -39,10 +39,7 @@
 
 //END INCLUDES
 
-void keyboard_handler(int irq)
-{
-//kprintf("[KEYP]\n");
-}
+
 
 //Wird von start.S aufgerufen. Erste Funktion, stellt also den Kernel da.
 void init(void)
